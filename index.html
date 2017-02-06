@@ -16,16 +16,16 @@
 		<img src="img/stage1.png" id="display">
 	</div>
 <div id="unguessedWord"></div>
-<div id="guesses">This is where the incorret guesses go</div>
-
+<div id="guesses"></div>
+<div id="wrongGuesses">This is where the incorret guesses go</div>
 
 
 
 <script type="text/javascript">
 
 var words = [
-["e", "a", "r", "t"],
-["w", "i", "n","d", "s"],
+["e", "a", "r", "t","h"],
+["w", "i", "n","d", "o","w","s"],
 ["f", "i", "r", "e", "h", "o", "u", "s", "e"]
 ];
 
@@ -35,58 +35,68 @@ var random = Math.floor((Math.random()*(words.length)));
 // console.log(random);
 
 var currentWord = words[random];
-// console.log(currentWord);
+console.log(currentWord);
 
 // creates array of _ to represent randomly selected word
 var wordSpaces = new Array(currentWord.length);
 for (var i = 0; i < wordSpaces.length; i++){
-	currentWord[i] = "_ ";
+	wordSpaces[i] = "_ ";
 }
-console.log(currentWord);
+console.log(wordSpaces);
 
 // prints selected word with _ to screen
 function displayEmptyWord(){
 	for (var i = 0; i < wordSpaces.length; i++){
 		var unguessedWord = document.getElementById("unguessedWord");
-		var letter = document.createTextNode(currentWord[i]);
+		var letter = document.createTextNode(wordSpaces[i]);
 		unguessedWord.appendChild(letter);
 	}
-}
+
 
 // takes keyboard input from user and stores it as userGuess
-document.onkeyup = function(event){
-	var userGuess = event.key;
-	// temp for debug
-	var reportGuess = "<p> You pressed: " + userGuess + "</p>";
-	document.querySelector("#guesses").innerHTML = reportGuess;
-}
+// document.onkeyup = function(event){
+// 	var userGuess = event.key;
+// 	console.log(userGuess);
+// 	// temp for debug
+// 	var reportGuess = "<p> You pressed: " + userGuess + "</p>";
+// 	document.querySelector("#guesses").innerHTML = reportGuess;
+// }
 document.onkeyup = function(event){
 	var userGuess = event.key;
 	var letter = userGuess;
 	console.log(letter);
+	console.log(currentWord);
 	for (var i =0; i < currentWord.length; i++){
 			if(currentWord[i] === letter){
 				wordSpaces[i] = letter + " ";
-				var correct = ture;
+				var correct = true;
 			}
 		userGuess = "";
+		document.querySelector("#guesses").innerHTML = "<p> You pressed: " + letter + "</p>";	
 	}
 
+	console.log(unguessedWord);
 
 	// if guess is true replace empyt word string with added correct letter
 	var unguessedWord = document.getElementById("unguessedWord");
 	unguessedWord.innerHTML="";
 	displayEmptyWord();
 
+	console.log(unguessedWord);
+	console.log(letter);
+	console.log(correct);
+	console.log(guesses);
+
 	// if guess is false add incorect letter to wrong letter field and changes displayed hangman .png
-	if(correct = false){
-		var wrongGuess = document.getElementById("guesses");
+	if(!correct){
+		var wrongGuess = document.getElementById("wrongGuesses");
 		var wrongLetter = document.createTextNode(" " + letter);
 		wrongGuess.appendChild(wrongLetter);
-		guesses++;
+		guesses ++;
 		var hangman = document.getElementById("display");
-		hangman.scr = "/image/stage" + guesses + ".png";
+		hangman.scr = "image/stage" + guesses + ".png";
 	}
+	console.log(guesses);
 
 	// checks for win
 	var win;
@@ -105,14 +115,14 @@ document.onkeyup = function(event){
 		alert("You Loose!");
 	}
 }
-
+}
 
 // function to start new word on open or reload
 function newGame(){
 	displayEmptyWord();
 }
 // starts game on open of page
-// window.onload = newGame;
+window.onload = newGame;
 
 </script>
 
