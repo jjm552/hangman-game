@@ -13,7 +13,7 @@
 <body>
 	<div id="main">
 		<p>This is where Hangman Goes</p>
-		<img src="img/stage1.png" id="display">
+		<img id="display" src="img/stage0.png">
 	</div>
 <div id="unguessedWord"></div>
 <div id="guesses"></div>
@@ -93,8 +93,12 @@ document.onkeyup = function(event){
 		var wrongLetter = document.createTextNode(" " + letter);
 		wrongGuess.appendChild(wrongLetter);
 		guesses ++;
-		var hangman = document.getElementById("display");
-		hangman.scr = "image/stage" + guesses + ".png";
+		
+		var replaceImg = "<img src=\"img/stage" + guesses + ".png>"
+		// document.getElementById('display').innerHTML = replaceImg; 
+		$("#display").attr("img", "img/stage" + guesses + ".png");
+
+		console.log(replaceImg);
 	}
 	console.log(guesses);
 
@@ -105,6 +109,7 @@ document.onkeyup = function(event){
 			win = false;
 		}
 		else alert("You win!")
+
 	}
 	// if (win){
 	// 	alert("You win!");
@@ -113,6 +118,7 @@ document.onkeyup = function(event){
 	// returns you loose alert if guesse = 6
 	if(guesses === 9){
 		alert("You Loose!");
+		displayEmptyWord();
 	}
 }
 }
