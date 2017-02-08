@@ -94,9 +94,10 @@ document.onkeyup = function(event){
 		wrongGuess.appendChild(wrongLetter);
 		guesses ++;
 		
-		var replaceImg = "<img src=\"img/stage" + guesses + ".png>"
-		// document.getElementById('display').innerHTML = replaceImg; 
-		$("#display").attr("img", "img/stage" + guesses + ".png");
+		var replaceImg = 'img/stage' + guesses + '.png'
+
+		document.getElementById('display').src = replaceImg; 
+		// $("#display").attr("img", "img/stage" + guesses + ".png");
 
 		console.log(replaceImg);
 	}
