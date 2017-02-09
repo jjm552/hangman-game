@@ -4,6 +4,13 @@ var words = [
 ["f", "i", "r", "e", "h", "o", "u", "s", "e"]
 ];
 
+var hints = [
+["The ball we live on"],
+["Portals we look through"],
+["House of dalmatians"]
+];
+
+
 var guesses = 0;
 // random number gen for selection of word
 var random = Math.floor((Math.random()*(words.length)));
@@ -11,6 +18,10 @@ var random = Math.floor((Math.random()*(words.length)));
 
 var currentWord = words[random];
 console.log(currentWord);
+var currentHint = hints[random];
+console.log(currentHint);
+document.querySelector("#currentHint").innerHTML = currentHint;
+
 
 // creates array of _ to represent randomly selected word
 var wordSpaces = new Array(currentWord.length);
@@ -76,6 +87,10 @@ document.onkeyup = function(event){
 	}
 	if (win){
 		alert("You win!")
+		letter = "";
+		$("#wrongGuesses").html("This is where the incorret guesses go");
+		$("#guesses").html("");
+		newGame();
 	}
 	// returns you loose alert if guesse = 9
 	if(guesses === 9){
