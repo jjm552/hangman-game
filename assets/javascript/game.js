@@ -1,3 +1,5 @@
+$(document).ready(function(){
+	
 var words = [
 ["e", "a", "r", "t","h"],
 ["w", "i", "n","d", "o","w","s"],
@@ -15,6 +17,8 @@ var guesses = 0;
 // random number gen for selection of word
 var random = Math.floor((Math.random()*(words.length)));
 // console.log(random);
+
+// $(document).ready(function(){
 
 var currentWord = words[random];
 console.log(currentWord);
@@ -38,6 +42,8 @@ function displayEmptyWord(){
 	unguessedWord.appendChild(letter);
 	}
 }
+displayEmptyWord();
+
 // takes keyboard input from user and stores it as userGuess
 document.onkeyup = function(event){
 	var userGuess = event.key;
@@ -87,10 +93,8 @@ document.onkeyup = function(event){
 	}
 	if (win){
 		alert("You win!")
-		letter = "";
-		$("#wrongGuesses").html("This is where the incorret guesses go");
-		$("#guesses").html("");
-		newGame();
+		location.reload();
+
 	}
 	// returns you loose alert if guesse = 9
 	if(guesses === 9){
@@ -99,18 +103,30 @@ document.onkeyup = function(event){
 		var replaceImg = 'assets/images/stage' + guesses + '.png'
 		document.getElementById('display').src = replaceImg;
 		letter = "";
-		$("#wrongGuesses").html("This is where the incorret guesses go");
-		$("#guesses").html("");
-		newGame();
+		// $("#wrongGuesses").html("This is where the incorret guesses go");
+		// $("#guesses").html("");
+		location.reload();
 	}
 
 }
 
+// function newGame(){
+// 	wordSpaces = "";
+// 	unguessedWord = "";
+// 	letter = "";
+// 	wrongGuesses = "";
+// 	guesses = 0;
+// 	$("#wrongGuesses").html("This is where the incorret guesses go");
+// 	$("#guesses").html("");
+// 	displayEmptyWord();
+// }
 
+});
 // function to start new word on open or reload
-function newGame(){
-	displayEmptyWord();
-}
+// function newGame(){
+// 	displayEmptyWord();
+// }
 // starts game on open of page
-window.onload = newGame()
+// window.onload = newGame()
+
 
