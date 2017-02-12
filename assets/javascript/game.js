@@ -3,13 +3,19 @@ $(document).ready(function(){
 var words = [
 ["e", "a", "r", "t","h"],
 ["w", "i", "n","d", "o","w","s"],
-["f", "i", "r", "e", "h", "o", "u", "s", "e"]
+["f", "i", "r", "e", "h", "o", "u", "s", "e"],
+["l","a","n","g","u","a","g","e"],
+["s","p","a","g","h","e","t","t","i"],
+["a","q","u","a","r","i","u","m"]
 ];
 
 var hints = [
 ["The ball we live on"],
 ["Portals we look through"],
-["House of dalmatians"]
+["House of dalmatians"],
+["english & spanish"],
+["italian food"],
+["where fish live"]
 ];
 
 
